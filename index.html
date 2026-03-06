@@ -30,133 +30,116 @@
     letter-spacing: 0.5px;
   }
   .header p { margin: 4px 0 0; font-size: 13px; opacity: 0.5; }
-  .header-btns { display: flex; gap: 8px; }
+  .header-btns { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
   .header-btn {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 10px;
     color: #e8e8f0;
-    padding: 8px 14px;
-    font-size: 13px;
+    padding: 8px 12px;
+    font-size: 12px;
     cursor: pointer;
+  }
+  .header-btn.active {
+    background: rgba(45,156,219,0.2);
+    border-color: rgba(45,156,219,0.4);
+    color: #2D9CDB;
   }
   .main { padding: 20px 20px 100px; max-width: 480px; margin: 0 auto; }
   .balance-card {
     background: linear-gradient(145deg, rgba(45,156,219,0.12), rgba(155,89,182,0.12));
-    border-radius: 20px;
-    padding: 28px 20px;
-    text-align: center;
-    border: 1px solid rgba(255,255,255,0.06);
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
+    border-radius: 20px; padding: 28px 20px; text-align: center;
+    border: 1px solid rgba(255,255,255,0.06); margin-bottom: 24px;
+    position: relative; overflow: hidden;
   }
   .balance-card .glow {
-    position: absolute; top: -40px; right: -40px;
-    width: 120px; height: 120px;
-    background: radial-gradient(circle, rgba(45,156,219,0.15), transparent 70%);
-    border-radius: 50%;
+    position: absolute; top: -40px; right: -40px; width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(45,156,219,0.15), transparent 70%); border-radius: 50%;
   }
   .ring-wrap { position: relative; display: inline-block; margin-bottom: 12px; }
-  .ring-center {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  .ring-center .amount {
-    font-family: 'Fredoka One', cursive;
-    font-size: 36px; line-height: 1; color: #fff;
-  }
+  .ring-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+  .ring-center .amount { font-family: 'Fredoka One', cursive; font-size: 36px; line-height: 1; color: #fff; }
   .ring-center .label { font-size: 11px; opacity: 0.5; margin-top: 4px; }
   .next-reward { font-size: 14px; opacity: 0.6; margin-bottom: 16px; }
   .next-reward strong { opacity: 1; }
   .redeem-btn {
-    background: linear-gradient(135deg, #27AE60, #2ECC71);
-    border: none; border-radius: 12px; color: #fff;
-    padding: 12px 28px; font-size: 15px; font-weight: 700;
-    cursor: pointer; box-shadow: 0 4px 15px rgba(39,174,96,0.3);
+    background: linear-gradient(135deg, #27AE60, #2ECC71); border: none; border-radius: 12px; color: #fff;
+    padding: 12px 28px; font-size: 15px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(39,174,96,0.3);
   }
   .today-section { margin-bottom: 24px; }
-  .today-section h3 {
-    font-size: 14px; font-weight: 700; opacity: 0.5;
-    margin: 0 0 10px 4px; text-transform: uppercase; letter-spacing: 1px;
-  }
+  .today-section h3 { font-size: 14px; font-weight: 700; opacity: 0.5; margin: 0 0 10px 4px; text-transform: uppercase; letter-spacing: 1px; }
   .today-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .today-tag {
-    border-radius: 8px; padding: 5px 10px;
-    font-size: 12px; font-weight: 600;
-  }
-  .cat-tabs {
-    display: flex; gap: 6px; margin-bottom: 16px;
-    overflow-x: auto; padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
-  }
-  .cat-tab {
-    border-radius: 10px; padding: 8px 14px;
-    font-size: 13px; cursor: pointer;
-    white-space: nowrap; transition: all 0.2s;
-  }
+  .today-tag { border-radius: 8px; padding: 5px 10px; font-size: 12px; font-weight: 600; }
+  .cat-tabs { display: flex; gap: 6px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .cat-tab { border-radius: 10px; padding: 8px 14px; font-size: 13px; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
   .task-list { display: flex; flex-direction: column; gap: 8px; }
   .task-btn {
     display: flex; align-items: center; justify-content: space-between;
-    border-radius: 14px; padding: 14px 16px;
-    cursor: pointer; text-align: left; width: 100%;
-    transition: all 0.3s;
+    border-radius: 14px; padding: 14px 16px; cursor: pointer; text-align: left; width: 100%; transition: all 0.3s;
   }
   .task-btn .left { display: flex; align-items: center; gap: 12px; }
-  .task-btn .icon {
-    width: 28px; height: 28px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; transition: all 0.3s;
-  }
+  .task-btn .icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.3s; }
   .task-btn .name { font-size: 15px; font-weight: 600; }
-  .task-btn .mins {
-    font-size: 14px; font-weight: 800;
-    font-family: 'Fredoka One', cursive;
+  .task-btn .mins { font-size: 14px; font-weight: 800; font-family: 'Fredoka One', cursive; }
+
+  /* Calendar */
+  .calendar-view { margin-bottom: 24px; }
+  .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .cal-header h3 { font-family: 'Fredoka One', cursive; font-size: 18px; }
+  .cal-arrow {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; color: #e8e8f0; width: 36px; height: 36px; font-size: 18px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
   }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cal-day-label { text-align: center; font-size: 11px; font-weight: 700; opacity: 0.35; text-transform: uppercase; padding: 4px 0 8px; }
+  .cal-cell {
+    aspect-ratio: 1; border-radius: 10px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 14px; font-weight: 700;
+    cursor: default; position: relative; transition: all 0.2s; border: 1.5px solid transparent;
+  }
+  .cal-cell.empty { opacity: 0; pointer-events: none; }
+  .cal-cell.no-data { opacity: 0.25; }
+  .cal-cell.has-data { background: rgba(39,174,96,0.15); border-color: rgba(39,174,96,0.25); cursor: pointer; }
+  .cal-cell.has-data:hover { background: rgba(39,174,96,0.25); border-color: rgba(39,174,96,0.4); transform: scale(1.08); }
+  .cal-cell.is-today { border-color: rgba(45,156,219,0.5); box-shadow: 0 0 8px rgba(45,156,219,0.2); }
+  .cal-cell.selected { border-color: #9B59B6 !important; background: rgba(155,89,182,0.2) !important; box-shadow: 0 0 12px rgba(155,89,182,0.3); }
+  .cal-mins { font-size: 8px; font-family: 'Fredoka One', cursive; color: #27AE60; position: absolute; bottom: 4px; }
+
+  .day-detail {
+    background: linear-gradient(145deg, rgba(155,89,182,0.1), rgba(45,156,219,0.1));
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; margin-top: 16px;
+  }
+  .day-detail h4 { font-family: 'Fredoka One', cursive; font-size: 16px; margin-bottom: 4px; }
+  .day-detail .day-total { font-size: 13px; opacity: 0.5; margin-bottom: 14px; }
+  .day-detail .day-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px;
+  }
+  .day-detail .day-item:last-child { border-bottom: none; }
+  .day-detail .earned { font-weight: 700; color: #27AE60; }
+  .day-detail .redeemed-item { font-weight: 700; color: #E74C3C; }
+  .day-detail .time { font-size: 11px; opacity: 0.4; margin-left: 8px; }
+
   .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(8px);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 100; padding: 20px;
+    position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px;
   }
   .modal {
-    background: linear-gradient(160deg, #1a1a3e, #24243e);
-    border-radius: 20px; padding: 28px 24px;
-    max-width: 400px; width: 100%;
-    border: 1px solid rgba(255,255,255,0.1);
+    background: linear-gradient(160deg, #1a1a3e, #24243e); border-radius: 20px; padding: 28px 24px;
+    max-width: 400px; width: 100%; border: 1px solid rgba(255,255,255,0.1);
   }
-  .modal h2 {
-    font-family: 'Fredoka One', cursive;
-    font-size: 22px; margin: 0 0 6px; text-align: center;
-  }
-  .modal .subtitle {
-    text-align: center; font-size: 14px; opacity: 0.5; margin: 0 0 20px;
-  }
+  .modal h2 { font-family: 'Fredoka One', cursive; font-size: 22px; margin: 0 0 6px; text-align: center; }
+  .modal .subtitle { text-align: center; font-size: 14px; opacity: 0.5; margin: 0 0 20px; }
   .modal-list { display: flex; flex-direction: column; gap: 8px; }
   .reward-btn {
     display: flex; align-items: center; justify-content: space-between;
-    border-radius: 12px; padding: 14px 16px;
-    cursor: pointer; width: 100%; text-align: left; font-size: 15px; font-weight: 600;
+    border-radius: 12px; padding: 14px 16px; cursor: pointer; width: 100%; text-align: left; font-size: 15px; font-weight: 600;
   }
   .modal-close {
-    margin-top: 16px; width: 100%; padding: 12px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px; color: #e8e8f0;
-    font-size: 14px; cursor: pointer;
-  }
-  .log-modal { max-height: 70vh; overflow-y: auto; }
-  .log-heading {
-    font-size: 12px; opacity: 0.4; margin: 0 0 8px;
-    text-transform: uppercase; letter-spacing: 1px;
-  }
-  .log-heading.redeemed { margin-top: 16px; }
-  .log-row {
-    display: flex; justify-content: space-between;
-    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-    font-size: 14px;
+    margin-top: 16px; width: 100%; padding: 12px; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #e8e8f0; font-size: 14px; cursor: pointer;
   }
   .hidden { display: none !important; }
   @media (hover: hover) {
@@ -173,37 +156,54 @@
     <p>Earn screen time by being awesome</p>
   </div>
   <div class="header-btns">
-    <button class="header-btn" onclick="toggleLog()">📋 Log</button>
-    <button class="header-btn" onclick="resetDay()">🌅 New Day</button>
+    <button class="header-btn active" id="btn-tracker" onclick="showView('tracker')">🎮 Tracker</button>
+    <button class="header-btn" id="btn-calendar" onclick="showView('calendar')">📅 History</button>
+    <button class="header-btn" id="btn-newday" onclick="resetDay()">🌅 New Day</button>
   </div>
 </div>
 
 <div class="main">
-  <div class="balance-card">
-    <div class="glow"></div>
-    <div class="ring-wrap">
-      <svg id="ring-svg" width="180" height="180" style="transform:rotate(-90deg)">
-        <circle cx="90" cy="90" r="76" fill="none" stroke="#1a1a2e" stroke-width="14" opacity="0.15"/>
-        <circle id="ring-progress" cx="90" cy="90" r="76" fill="none" stroke="#2D9CDB" stroke-width="14"
-          stroke-dasharray="477.52" stroke-dashoffset="477.52" stroke-linecap="round"
-          style="transition: stroke-dashoffset 0.6s cubic-bezier(.4,0,.2,1)"/>
-      </svg>
-      <div class="ring-center">
-        <div class="amount" id="total-display">0m</div>
-        <div class="label">earned</div>
+
+  <!-- TRACKER VIEW -->
+  <div id="view-tracker">
+    <div class="balance-card">
+      <div class="glow"></div>
+      <div class="ring-wrap">
+        <svg width="180" height="180" style="transform:rotate(-90deg)">
+          <circle cx="90" cy="90" r="76" fill="none" stroke="#1a1a2e" stroke-width="14" opacity="0.15"/>
+          <circle id="ring-progress" cx="90" cy="90" r="76" fill="none" stroke="#2D9CDB" stroke-width="14"
+            stroke-dasharray="477.52" stroke-dashoffset="477.52" stroke-linecap="round"
+            style="transition: stroke-dashoffset 0.6s cubic-bezier(.4,0,.2,1)"/>
+        </svg>
+        <div class="ring-center">
+          <div class="amount" id="total-display">0m</div>
+          <div class="label">earned</div>
+        </div>
       </div>
+      <div class="next-reward" id="next-reward-text"></div>
+      <button class="redeem-btn hidden" id="redeem-btn" onclick="openRedeem()">🎁 Redeem Reward</button>
     </div>
-    <div class="next-reward" id="next-reward-text"></div>
-    <button class="redeem-btn hidden" id="redeem-btn" onclick="openRedeem()">🎁 Redeem Reward</button>
+
+    <div class="today-section hidden" id="today-section">
+      <h3>Today's Wins</h3>
+      <div class="today-tags" id="today-tags"></div>
+    </div>
+
+    <div class="cat-tabs" id="cat-tabs"></div>
+    <div class="task-list" id="task-list"></div>
   </div>
 
-  <div class="today-section hidden" id="today-section">
-    <h3>Today's Wins</h3>
-    <div class="today-tags" id="today-tags"></div>
+  <!-- CALENDAR VIEW -->
+  <div id="view-calendar" class="hidden">
+    <div class="cal-header">
+      <button class="cal-arrow" onclick="calPrev()">‹</button>
+      <h3 id="cal-month-label"></h3>
+      <button class="cal-arrow" onclick="calNext()">›</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div id="day-detail-wrap"></div>
   </div>
 
-  <div class="cat-tabs" id="cat-tabs"></div>
-  <div class="task-list" id="task-list"></div>
 </div>
 
 <!-- Redeem Modal -->
@@ -213,15 +213,6 @@
     <p class="subtitle" id="redeem-balance"></p>
     <div class="modal-list" id="reward-list"></div>
     <button class="modal-close" onclick="closeRedeem()">Keep Saving</button>
-  </div>
-</div>
-
-<!-- Log Modal -->
-<div class="modal-overlay hidden" id="log-modal" onclick="closeLog()">
-  <div class="modal log-modal" onclick="event.stopPropagation()">
-    <h2>📋 Activity Log</h2>
-    <div id="log-content" style="margin-top:20px"></div>
-    <button class="modal-close" onclick="closeLog()">Close</button>
   </div>
 </div>
 
@@ -282,23 +273,51 @@ const MILESTONES = [
   { minutes: 250, label: "New Game or App", emoji: "🌟" }
 ];
 
-const STORAGE_KEY = "coopers_quest_data";
-let state = loadState();
-let activeCategory = "chores";
+const STORAGE_KEY = "coopers_quest_v2";
+const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DAY_LABELS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+let state, activeCategory = "chores", currentView = "tracker";
+let calYear, calMonth, selectedDateKey = null;
+
+// --- State Management ---
+
+function defaultState() {
+  return { totalMinutes: 0, completedToday: [], history: [], streakDays: 0, lastDate: todayKey(), dailyLog: {}, redeemLog: {} };
+}
 
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      const p = JSON.parse(saved);
+      if (!p.dailyLog) p.dailyLog = {};
+      if (!p.redeemLog) p.redeemLog = {};
+      return p;
+    }
   } catch(e) {}
-  return { totalMinutes: 0, completedToday: [], history: [], streakDays: 0, lastDate: todayStr() };
+  return defaultState();
 }
 
 function saveState() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
 }
 
-function todayStr() { return new Date().toLocaleDateString(); }
+function todayKey() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+
+function dateToKey(y, m, d) {
+  return y + "-" + String(m+1).padStart(2,"0") + "-" + String(d).padStart(2,"0");
+}
+
+function keyToDisplay(k) {
+  if (k === todayKey()) return "Today";
+  const parts = k.split("-");
+  const d = new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2]));
+  return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+}
 
 function fmtMin(m) {
   if (m < 60) return m + "m";
@@ -307,15 +326,31 @@ function fmtMin(m) {
 }
 
 function checkNewDay() {
-  if (state.lastDate !== todayStr()) {
-    if (state.completedToday.length > 0) state.streakDays++;
+  if (state.lastDate !== todayKey()) {
+    if (state.completedToday.length > 0) {
+      state.streakDays++;
+      if (!state.dailyLog[state.lastDate]) {
+        state.dailyLog[state.lastDate] = state.completedToday.slice();
+      }
+    }
     state.completedToday = [];
-    state.lastDate = todayStr();
+    state.lastDate = todayKey();
     saveState();
   }
 }
 
-// --- Rendering ---
+// --- Views ---
+
+function showView(v) {
+  currentView = v;
+  document.getElementById("view-tracker").classList.toggle("hidden", v !== "tracker");
+  document.getElementById("view-calendar").classList.toggle("hidden", v !== "calendar");
+  document.getElementById("btn-tracker").classList.toggle("active", v === "tracker");
+  document.getElementById("btn-calendar").classList.toggle("active", v === "calendar");
+  if (v === "calendar") { selectedDateKey = null; renderCalendar(); }
+}
+
+// --- Tracker ---
 
 function updateRing() {
   const next = MILESTONES.find(m => m.minutes > state.totalMinutes) || MILESTONES[MILESTONES.length - 1];
@@ -325,16 +360,11 @@ function updateRing() {
   el.setAttribute("stroke-dashoffset", circ * (1 - pct));
   el.setAttribute("stroke", pct >= 1 ? "#27AE60" : "#2D9CDB");
   document.getElementById("total-display").textContent = fmtMin(state.totalMinutes);
-  document.getElementById("next-reward-text").innerHTML =
-    "Next reward: <strong>" + next.emoji + " " + next.label + "</strong> at " + fmtMin(next.minutes);
+  document.getElementById("next-reward-text").innerHTML = "Next reward: <strong>" + next.emoji + " " + next.label + "</strong> at " + fmtMin(next.minutes);
   const avail = MILESTONES.filter(m => m.minutes <= state.totalMinutes);
   const btn = document.getElementById("redeem-btn");
-  if (avail.length > 0) {
-    btn.classList.remove("hidden");
-    btn.textContent = "🎁 Redeem Reward (" + avail.length + " available)";
-  } else {
-    btn.classList.add("hidden");
-  }
+  if (avail.length > 0) { btn.classList.remove("hidden"); btn.textContent = "🎁 Redeem Reward (" + avail.length + " available)"; }
+  else { btn.classList.add("hidden"); }
 }
 
 function renderTodayTags() {
@@ -344,91 +374,135 @@ function renderTodayTags() {
   section.classList.remove("hidden");
   container.innerHTML = state.completedToday.map(item => {
     const cat = CATEGORIES[item.category];
-    return '<span class="today-tag" style="background:' + cat.color + '22;border:1px solid ' + cat.color + '44;color:' + cat.color + '">'
-      + cat.emoji + " " + item.label + " +" + item.minutes + "m</span>";
+    return '<span class="today-tag" style="background:'+cat.color+'22;border:1px solid '+cat.color+'44;color:'+cat.color+'">'+cat.emoji+" "+item.label+" +"+item.minutes+"m</span>";
   }).join("");
 }
 
 function renderCatTabs() {
-  const container = document.getElementById("cat-tabs");
-  container.innerHTML = Object.entries(CATEGORIES).map(([key, cat]) => {
-    const active = key === activeCategory;
-    return '<button class="cat-tab" data-cat="' + key + '" style="'
-      + "background:" + (active ? cat.color + "30" : "rgba(255,255,255,0.04)") + ";"
-      + "border:1.5px solid " + (active ? cat.color + "66" : "rgba(255,255,255,0.08)") + ";"
-      + "font-weight:" + (active ? 700 : 500) + ";"
-      + "color:" + (active ? cat.color : "rgba(255,255,255,0.5)") + ";"
-      + '">' + cat.emoji + " " + cat.label + "</button>";
+  const c = document.getElementById("cat-tabs");
+  c.innerHTML = Object.entries(CATEGORIES).map(([key, cat]) => {
+    const a = key === activeCategory;
+    return '<button class="cat-tab" data-cat="'+key+'" style="background:'+(a?cat.color+"30":"rgba(255,255,255,0.04)")+";border:1.5px solid "+(a?cat.color+"66":"rgba(255,255,255,0.08)")+";font-weight:"+(a?700:500)+";color:"+(a?cat.color:"rgba(255,255,255,0.5)")+'">'+cat.emoji+" "+cat.label+"</button>";
   }).join("");
-  container.querySelectorAll(".cat-tab").forEach(btn => {
-    btn.addEventListener("click", () => { activeCategory = btn.dataset.cat; renderCatTabs(); renderTasks(); });
+  c.querySelectorAll(".cat-tab").forEach(b => {
+    b.addEventListener("click", () => { activeCategory = b.dataset.cat; renderCatTabs(); renderTasks(); });
   });
 }
 
 function renderTasks() {
   const cat = CATEGORIES[activeCategory];
-  const container = document.getElementById("task-list");
-  container.innerHTML = cat.items.map(task => {
-    const done = state.completedToday.some(c => c.id === task.id);
-    return '<button class="task-btn" data-id="' + task.id + '" ' + (done ? "disabled" : "") + ' style="'
-      + "background:" + (done ? cat.color + "18" : "rgba(255,255,255,0.04)") + ";"
-      + "border:1.5px solid " + (done ? cat.color + "44" : "rgba(255,255,255,0.06)") + ";"
-      + "opacity:" + (done ? 0.6 : 1) + ";"
-      + "color:#e8e8f0;"
-      + '">'
-      + '<div class="left">'
-      + '<div class="icon" style="background:' + (done ? cat.color : "rgba(255,255,255,0.08)") + '">'
-      + (done ? "✓" : cat.emoji) + "</div>"
-      + '<span class="name">' + task.label + "</span></div>"
-      + '<span class="mins" style="color:' + cat.color + '">+' + task.minutes + "m</span>"
-      + "</button>";
+  const c = document.getElementById("task-list");
+  c.innerHTML = cat.items.map(task => {
+    const done = state.completedToday.some(x => x.id === task.id);
+    return '<button class="task-btn" data-id="'+task.id+'" '+(done?"disabled":"")+' style="background:'+(done?cat.color+"18":"rgba(255,255,255,0.04)")+";border:1.5px solid "+(done?cat.color+"44":"rgba(255,255,255,0.06)")+";opacity:"+(done?0.6:1)+';color:#e8e8f0"><div class="left"><div class="icon" style="background:'+(done?cat.color:"rgba(255,255,255,0.08)")+'">'+(done?"✓":cat.emoji)+'</div><span class="name">'+task.label+'</span></div><span class="mins" style="color:'+cat.color+'">+'+task.minutes+"m</span></button>";
   }).join("");
-  container.querySelectorAll(".task-btn:not([disabled])").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const task = cat.items.find(t => t.id === btn.dataset.id);
-      if (!task) return;
-      completeTask(task, activeCategory);
-      btn.style.transform = "scale(1.03)";
-      setTimeout(() => { btn.style.transform = "scale(1)"; }, 300);
+  c.querySelectorAll(".task-btn:not([disabled])").forEach(b => {
+    b.addEventListener("click", () => {
+      const task = cat.items.find(t => t.id === b.dataset.id);
+      if (task) { completeTask(task, activeCategory); b.style.transform="scale(1.03)"; setTimeout(()=>{b.style.transform="scale(1)"},300); }
     });
   });
 }
 
 function completeTask(task, catKey) {
+  const entry = { ...task, category: catKey, timestamp: new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"}) };
   state.totalMinutes += task.minutes;
-  state.completedToday.push({
-    ...task, category: catKey,
-    timestamp: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+  state.completedToday.push(entry);
+  const key = todayKey();
+  if (!state.dailyLog[key]) state.dailyLog[key] = [];
+  state.dailyLog[key].push(entry);
+  saveState(); updateRing(); renderTodayTags(); renderTasks();
+}
+
+// --- Calendar ---
+
+function calPrev() { calMonth--; if(calMonth<0){calMonth=11;calYear--;} selectedDateKey=null; renderCalendar(); }
+function calNext() { calMonth++; if(calMonth>11){calMonth=0;calYear++;} selectedDateKey=null; renderCalendar(); }
+
+function renderCalendar() {
+  document.getElementById("cal-month-label").textContent = MONTH_NAMES[calMonth] + " " + calYear;
+  const grid = document.getElementById("cal-grid");
+  const tk = todayKey();
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+
+  let html = DAY_LABELS.map(d => '<div class="cal-day-label">'+d+'</div>').join("");
+  for (let i=0; i<firstDay; i++) html += '<div class="cal-cell empty"></div>';
+
+  for (let d=1; d<=daysInMonth; d++) {
+    const dk = dateToKey(calYear, calMonth, d);
+    const log = state.dailyLog[dk] || [];
+    const redeemed = state.redeemLog[dk] || [];
+    const hasData = log.length > 0 || redeemed.length > 0;
+    const isToday = dk === tk;
+    const isSelected = dk === selectedDateKey;
+    const totalMin = log.reduce((s,i) => s+i.minutes, 0);
+
+    let cls = "cal-cell";
+    if (!hasData) cls += " no-data";
+    else cls += " has-data";
+    if (isToday) cls += " is-today";
+    if (isSelected) cls += " selected";
+
+    html += '<div class="'+cls+'" onclick="selectDay(\''+dk+'\')">';
+    html += '<span>'+d+'</span>';
+    if (hasData && totalMin > 0) html += '<span class="cal-mins">+'+totalMin+'</span>';
+    html += '</div>';
+  }
+
+  grid.innerHTML = html;
+  renderDayDetail();
+}
+
+function selectDay(dk) {
+  selectedDateKey = selectedDateKey === dk ? null : dk;
+  renderCalendar();
+}
+
+function renderDayDetail() {
+  const wrap = document.getElementById("day-detail-wrap");
+  if (!selectedDateKey) { wrap.innerHTML = ""; return; }
+
+  const log = state.dailyLog[selectedDateKey] || [];
+  const redeemed = state.redeemLog[selectedDateKey] || [];
+
+  if (log.length === 0 && redeemed.length === 0) {
+    wrap.innerHTML = '<div class="day-detail"><p style="text-align:center;opacity:0.4;font-size:14px">No activity this day</p></div>';
+    return;
+  }
+
+  const totalMin = log.reduce((s,i)=>s+i.minutes, 0);
+  let html = '<div class="day-detail">';
+  html += '<h4>📅 ' + keyToDisplay(selectedDateKey) + '</h4>';
+  html += '<div class="day-total">' + log.length + ' task' + (log.length!==1?'s':'') + ' completed · ' + fmtMin(totalMin) + ' earned</div>';
+
+  log.forEach(item => {
+    const cat = CATEGORIES[item.category];
+    html += '<div class="day-item"><span>'+(cat?cat.emoji:"•")+' '+item.label;
+    if (item.timestamp) html += '<span class="time">'+item.timestamp+'</span>';
+    html += '</span><span class="earned">+'+item.minutes+'m</span></div>';
   });
-  saveState();
-  updateRing();
-  renderTodayTags();
-  renderTasks();
+
+  redeemed.forEach(item => {
+    html += '<div class="day-item"><span>'+item.emoji+' '+item.label+'</span><span class="redeemed-item">-'+item.minutes+'m</span></div>';
+  });
+
+  html += '</div>';
+  wrap.innerHTML = html;
 }
 
 // --- Modals ---
 
 function openRedeem() {
-  const modal = document.getElementById("redeem-modal");
-  modal.classList.remove("hidden");
+  document.getElementById("redeem-modal").classList.remove("hidden");
   document.getElementById("redeem-balance").textContent = "You have " + fmtMin(state.totalMinutes) + " saved up";
   const list = document.getElementById("reward-list");
   list.innerHTML = MILESTONES.map(m => {
     const can = state.totalMinutes >= m.minutes;
-    return '<button class="reward-btn" ' + (can ? 'data-min="' + m.minutes + '"' : "disabled") + ' style="'
-      + "background:" + (can ? "rgba(39,174,96,0.15)" : "rgba(255,255,255,0.03)") + ";"
-      + "border:1.5px solid " + (can ? "rgba(39,174,96,0.3)" : "rgba(255,255,255,0.06)") + ";"
-      + "color:" + (can ? "#e8e8f0" : "rgba(255,255,255,0.3)") + ";"
-      + '">'
-      + "<span>" + m.emoji + " " + m.label + "</span>"
-      + '<span style="font-size:13px;font-weight:700;color:' + (can ? "#27AE60" : "rgba(255,255,255,0.2)") + '">' + fmtMin(m.minutes) + "</span>"
-      + "</button>";
+    return '<button class="reward-btn" '+(can?'data-min="'+m.minutes+'"':"disabled")+' style="background:'+(can?"rgba(39,174,96,0.15)":"rgba(255,255,255,0.03)")+";border:1.5px solid "+(can?"rgba(39,174,96,0.3)":"rgba(255,255,255,0.06)")+";color:"+(can?"#e8e8f0":"rgba(255,255,255,0.3)")+'"><span>'+m.emoji+" "+m.label+'</span><span style="font-size:13px;font-weight:700;color:'+(can?"#27AE60":"rgba(255,255,255,0.2)")+'">'+fmtMin(m.minutes)+"</span></button>";
   }).join("");
-  list.querySelectorAll(".reward-btn[data-min]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const m = MILESTONES.find(x => x.minutes === parseInt(btn.dataset.min));
-      if (m) redeemReward(m);
-    });
+  list.querySelectorAll(".reward-btn[data-min]").forEach(b => {
+    b.addEventListener("click", () => { const m=MILESTONES.find(x=>x.minutes===parseInt(b.dataset.min)); if(m) redeemReward(m); });
   });
 }
 
@@ -436,57 +510,33 @@ function closeRedeem() { document.getElementById("redeem-modal").classList.add("
 
 function redeemReward(milestone) {
   state.totalMinutes -= milestone.minutes;
-  state.history.push({
-    type: "redeem", label: milestone.label, emoji: milestone.emoji,
-    minutes: milestone.minutes, date: todayStr()
-  });
-  saveState();
-  closeRedeem();
-  updateRing();
-}
-
-function toggleLog() {
-  const modal = document.getElementById("log-modal");
-  modal.classList.toggle("hidden");
-  if (!modal.classList.contains("hidden")) renderLog();
-}
-function closeLog() { document.getElementById("log-modal").classList.add("hidden"); }
-
-function renderLog() {
-  const el = document.getElementById("log-content");
-  if (state.completedToday.length === 0 && state.history.length === 0) {
-    el.innerHTML = '<p style="text-align:center;opacity:0.4;font-size:14px">No activity yet — start earning!</p>';
-    return;
-  }
-  let html = "";
-  if (state.completedToday.length > 0) {
-    html += '<h4 class="log-heading">Today</h4>';
-    html += state.completedToday.map(item =>
-      '<div class="log-row"><span>' + CATEGORIES[item.category].emoji + " " + item.label
-      + '</span><span style="color:#27AE60;font-weight:700">+' + item.minutes + "m</span></div>"
-    ).join("");
-  }
-  if (state.history.length > 0) {
-    html += '<h4 class="log-heading redeemed">Redeemed</h4>';
-    html += state.history.map(item =>
-      '<div class="log-row"><span>' + item.emoji + " " + item.label
-      + '</span><span style="color:#E74C3C;font-weight:700">-' + item.minutes + "m</span></div>"
-    ).join("");
-  }
-  el.innerHTML = html;
+  const entry = { type:"redeem", label:milestone.label, emoji:milestone.emoji, minutes:milestone.minutes, date:todayKey() };
+  state.history.push(entry);
+  const key = todayKey();
+  if (!state.redeemLog[key]) state.redeemLog[key] = [];
+  state.redeemLog[key].push(entry);
+  saveState(); closeRedeem(); updateRing();
 }
 
 function resetDay() {
-  if (state.completedToday.length > 0) state.streakDays++;
+  if (state.completedToday.length > 0) {
+    state.streakDays++;
+    const key = state.lastDate;
+    if (!state.dailyLog[key] || state.dailyLog[key].length === 0) {
+      state.dailyLog[key] = state.completedToday.slice();
+    }
+  }
   state.completedToday = [];
-  state.lastDate = todayStr();
-  saveState();
-  updateRing();
-  renderTodayTags();
-  renderTasks();
+  state.lastDate = todayKey();
+  saveState(); updateRing(); renderTodayTags(); renderTasks();
+  if (currentView === "calendar") renderCalendar();
 }
 
 // --- Init ---
+state = loadState();
+const n = new Date();
+calYear = n.getFullYear();
+calMonth = n.getMonth();
 checkNewDay();
 updateRing();
 renderTodayTags();
