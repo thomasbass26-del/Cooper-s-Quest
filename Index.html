@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Cooper's Quest</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0f0c29 0%, #1a1a3e 40%, #24243e 100%);
+    font-family: 'Nunito', 'Segoe UI', sans-serif;
+    color: #e8e8f0;
+    overflow-x: hidden;
+  }
+  button { font-family: inherit; }
+  .header {
+    background: linear-gradient(135deg, rgba(45,156,219,0.15), rgba(155,89,182,0.15));
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 20px 24px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 26px;
+    background: linear-gradient(135deg, #2D9CDB, #9B59B6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+  }
+  .header p { margin: 4px 0 0; font-size: 13px; opacity: 0.5; }
+  .header-btns { display: flex; gap: 8px; }
+  .header-btn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: #e8e8f0;
+    padding: 8px 14px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .main { padding: 20px 20px 100px; max-width: 480px; margin: 0 auto; }
+  .balance-card {
+    background: linear-gradient(145deg, rgba(45,156,219,0.12), rgba(155,89,182,0.12));
+    border-radius: 20px;
+    padding: 28px 20px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .balance-card .glow {
+    position: absolute; top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(45,156,219,0.15), transparent 70%);
+    border-radius: 50%;
+  }
+  .ring-wrap { position: relative; display: inline-block; margin-bottom: 12px; }
+  .ring-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .ring-center .amount {
+    font-family: 'Fredoka One', cursive;
+    font-size: 36px; line-height: 1; color: #fff;
+  }
+  .ring-center .label { font-size: 11px; opacity: 0.5; margin-top: 4px; }
+  .next-reward { font-size: 14px; opacity: 0.6; margin-bottom: 16px; }
+  .next-reward strong { opacity: 1; }
+  .redeem-btn {
+    background: linear-gradient(135deg, #27AE60, #2ECC71);
+    border: none; border-radius: 12px; color: #fff;
+    padding: 12px 28px; font-size: 15px; font-weight: 700;
+    cursor: pointer; box-shadow: 0 4px 15px rgba(39,174,96,0.3);
+  }
+  .today-section { margin-bottom: 24px; }
+  .today-section h3 {
+    font-size: 14px; font-weight: 700; opacity: 0.5;
+    margin: 0 0 10px 4px; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .today-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .today-tag {
+    border-radius: 8px; padding: 5px 10px;
+    font-size: 12px; font-weight: 600;
+  }
+  .cat-tabs {
+    display: flex; gap: 6px; margin-bottom: 16px;
+    overflow-x: auto; padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cat-tab {
+    border-radius: 10px; padding: 8px 14px;
+    font-size: 13px; cursor: pointer;
+    white-space: nowrap; transition: all 0.2s;
+  }
+  .task-list { display: flex; flex-direction: column; gap: 8px; }
+  .task-btn {
+    display: flex; align-items: center; justify-content: space-between;
+    border-radius: 14px; padding: 14px 16px;
+    cursor: pointer; text-align: left; width: 100%;
+    transition: all 0.3s;
+  }
+  .task-btn .left { display: flex; align-items: center; gap: 12px; }
+  .task-btn .icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; transition: all 0.3s;
+  }
+  .task-btn .name { font-size: 15px; font-weight: 600; }
+  .task-btn .mins {
+    font-size: 14px; font-weight: 800;
+    font-family: 'Fredoka One', cursive;
+  }
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; padding: 20px;
+  }
+  .modal {
+    background: linear-gradient(160deg, #1a1a3e, #24243e);
+    border-radius: 20px; padding: 28px 24px;
+    max-width: 400px; width: 100%;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .modal h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 22px; margin: 0 0 6px; text-align: center;
+  }
+  .modal .subtitle {
+    text-align: center; font-size: 14px; opacity: 0.5; margin: 0 0 20px;
+  }
+  .modal-list { display: flex; flex-direction: column; gap: 8px; }
+  .reward-btn {
+    display: flex; align-items: center; justify-content: space-between;
+    border-radius: 12px; padding: 14px 16px;
+    cursor: pointer; width: 100%; text-align: left; font-size: 15px; font-weight: 600;
+  }
+  .modal-close {
+    margin-top: 16px; width: 100%; padding: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; color: #e8e8f0;
+    font-size: 14px; cursor: pointer;
+  }
+  .log-modal { max-height: 70vh; overflow-y: auto; }
+  .log-heading {
+    font-size: 12px; opacity: 0.4; margin: 0 0 8px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .log-heading.redeemed { margin-top: 16px; }
+  .log-row {
+    display: flex; justify-content: space-between;
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px;
+  }
+  .hidden { display: none !important; }
+  @media (hover: hover) {
+    .task-btn:not(:disabled):hover { transform: scale(1.02); }
+    .header-btn:hover { background: rgba(255,255,255,0.12); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>Cooper's Quest</h1>
+    <p>Earn screen time by being awesome</p>
+  </div>
+  <div class="header-btns">
+    <button class="header-btn" onclick="toggleLog()">📋 Log</button>
+    <button class="header-btn" onclick="resetDay()">🌅 New Day</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="balance-card">
+    <div class="glow"></div>
+    <div class="ring-wrap">
+      <svg id="ring-svg" width="180" height="180" style="transform:rotate(-90deg)">
+        <circle cx="90" cy="90" r="76" fill="none" stroke="#1a1a2e" stroke-width="14" opacity="0.15"/>
+        <circle id="ring-progress" cx="90" cy="90" r="76" fill="none" stroke="#2D9CDB" stroke-width="14"
+          stroke-dasharray="477.52" stroke-dashoffset="477.52" stroke-linecap="round"
+          style="transition: stroke-dashoffset 0.6s cubic-bezier(.4,0,.2,1)"/>
+      </svg>
+      <div class="ring-center">
+        <div class="amount" id="total-display">0m</div>
+        <div class="label">earned</div>
+      </div>
+    </div>
+    <div class="next-reward" id="next-reward-text"></div>
+    <button class="redeem-btn hidden" id="redeem-btn" onclick="openRedeem()">🎁 Redeem Reward</button>
+  </div>
+
+  <div class="today-section hidden" id="today-section">
+    <h3>Today's Wins</h3>
+    <div class="today-tags" id="today-tags"></div>
+  </div>
+
+  <div class="cat-tabs" id="cat-tabs"></div>
+  <div class="task-list" id="task-list"></div>
+</div>
+
+<!-- Redeem Modal -->
+<div class="modal-overlay hidden" id="redeem-modal" onclick="closeRedeem()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h2>🎁 Redeem a Reward</h2>
+    <p class="subtitle" id="redeem-balance"></p>
+    <div class="modal-list" id="reward-list"></div>
+    <button class="modal-close" onclick="closeRedeem()">Keep Saving</button>
+  </div>
+</div>
+
+<!-- Log Modal -->
+<div class="modal-overlay hidden" id="log-modal" onclick="closeLog()">
+  <div class="modal log-modal" onclick="event.stopPropagation()">
+    <h2>📋 Activity Log</h2>
+    <div id="log-content" style="margin-top:20px"></div>
+    <button class="modal-close" onclick="closeLog()">Close</button>
+  </div>
+</div>
+
+<script>
+const CATEGORIES = {
+  chores: {
+    label: "Chores", emoji: "🧹", color: "#2D9CDB",
+    items: [
+      { id: "make-bed", label: "Make bed", minutes: 10 },
+      { id: "clean-room", label: "Clean room", minutes: 15 },
+      { id: "dishes", label: "Help with dishes", minutes: 10 },
+      { id: "laundry", label: "Put away laundry", minutes: 10 },
+      { id: "take-trash", label: "Take out trash", minutes: 5 },
+      { id: "feed-pet", label: "Feed pet / help with pet", minutes: 5 },
+      { id: "vacuum", label: "Vacuum a room", minutes: 15 }
+    ]
+  },
+  school: {
+    label: "School & Learning", emoji: "📚", color: "#27AE60",
+    items: [
+      { id: "homework-done", label: "Homework completed", minutes: 20 },
+      { id: "good-school-day", label: "Good report from school", minutes: 30 },
+      { id: "reading-20", label: "Read for 20 minutes", minutes: 15 },
+      { id: "reading-30", label: "Read for 30 minutes", minutes: 25 },
+      { id: "practice-skill", label: "Practice a skill (math, writing)", minutes: 15 }
+    ]
+  },
+  outside: {
+    label: "Outside & Active", emoji: "☀️", color: "#F2994A",
+    items: [
+      { id: "outside-30", label: "Play outside 30 min", minutes: 15 },
+      { id: "outside-60", label: "Play outside 1 hour", minutes: 30 },
+      { id: "bike-ride", label: "Bike ride", minutes: 20 },
+      { id: "sports-practice", label: "Sports / practice", minutes: 25 },
+      { id: "walk-dog", label: "Walk the dog", minutes: 10 },
+      { id: "family-activity", label: "Family outdoor activity", minutes: 20 }
+    ]
+  },
+  bonus: {
+    label: "Bonus & Character", emoji: "⭐", color: "#9B59B6",
+    items: [
+      { id: "kind-act", label: "Act of kindness", minutes: 10 },
+      { id: "no-reminders", label: "Did chores without reminders", minutes: 10 },
+      { id: "helped-sibling", label: "Helped sister without being asked", minutes: 15 },
+      { id: "good-attitude", label: "Great attitude all day", minutes: 15 },
+      { id: "tried-hard", label: "Tried something difficult", minutes: 10 },
+      { id: "apologized", label: "Owned a mistake & apologized", minutes: 10 }
+    ]
+  }
+};
+
+const MILESTONES = [
+  { minutes: 30, label: "Quick Game", emoji: "🎮" },
+  { minutes: 60, label: "1 Hour Screen Time", emoji: "📱" },
+  { minutes: 90, label: "Movie Night Pick", emoji: "🍿" },
+  { minutes: 120, label: "2 Hour Gaming Session", emoji: "🕹️" },
+  { minutes: 180, label: "Friend Sleepover + Games", emoji: "🏆" },
+  { minutes: 250, label: "New Game or App", emoji: "🌟" }
+];
+
+const STORAGE_KEY = "coopers_quest_data";
+let state = loadState();
+let activeCategory = "chores";
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return { totalMinutes: 0, completedToday: [], history: [], streakDays: 0, lastDate: todayStr() };
+}
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function todayStr() { return new Date().toLocaleDateString(); }
+
+function fmtMin(m) {
+  if (m < 60) return m + "m";
+  const h = Math.floor(m / 60), r = m % 60;
+  return r > 0 ? h + "h " + r + "m" : h + "h";
+}
+
+function checkNewDay() {
+  if (state.lastDate !== todayStr()) {
+    if (state.completedToday.length > 0) state.streakDays++;
+    state.completedToday = [];
+    state.lastDate = todayStr();
+    saveState();
+  }
+}
+
+// --- Rendering ---
+
+function updateRing() {
+  const next = MILESTONES.find(m => m.minutes > state.totalMinutes) || MILESTONES[MILESTONES.length - 1];
+  const pct = Math.min(state.totalMinutes / next.minutes, 1);
+  const circ = 2 * Math.PI * 76;
+  const el = document.getElementById("ring-progress");
+  el.setAttribute("stroke-dashoffset", circ * (1 - pct));
+  el.setAttribute("stroke", pct >= 1 ? "#27AE60" : "#2D9CDB");
+  document.getElementById("total-display").textContent = fmtMin(state.totalMinutes);
+  document.getElementById("next-reward-text").innerHTML =
+    "Next reward: <strong>" + next.emoji + " " + next.label + "</strong> at " + fmtMin(next.minutes);
+  const avail = MILESTONES.filter(m => m.minutes <= state.totalMinutes);
+  const btn = document.getElementById("redeem-btn");
+  if (avail.length > 0) {
+    btn.classList.remove("hidden");
+    btn.textContent = "🎁 Redeem Reward (" + avail.length + " available)";
+  } else {
+    btn.classList.add("hidden");
+  }
+}
+
+function renderTodayTags() {
+  const section = document.getElementById("today-section");
+  const container = document.getElementById("today-tags");
+  if (state.completedToday.length === 0) { section.classList.add("hidden"); return; }
+  section.classList.remove("hidden");
+  container.innerHTML = state.completedToday.map(item => {
+    const cat = CATEGORIES[item.category];
+    return '<span class="today-tag" style="background:' + cat.color + '22;border:1px solid ' + cat.color + '44;color:' + cat.color + '">'
+      + cat.emoji + " " + item.label + " +" + item.minutes + "m</span>";
+  }).join("");
+}
+
+function renderCatTabs() {
+  const container = document.getElementById("cat-tabs");
+  container.innerHTML = Object.entries(CATEGORIES).map(([key, cat]) => {
+    const active = key === activeCategory;
+    return '<button class="cat-tab" data-cat="' + key + '" style="'
+      + "background:" + (active ? cat.color + "30" : "rgba(255,255,255,0.04)") + ";"
+      + "border:1.5px solid " + (active ? cat.color + "66" : "rgba(255,255,255,0.08)") + ";"
+      + "font-weight:" + (active ? 700 : 500) + ";"
+      + "color:" + (active ? cat.color : "rgba(255,255,255,0.5)") + ";"
+      + '">' + cat.emoji + " " + cat.label + "</button>";
+  }).join("");
+  container.querySelectorAll(".cat-tab").forEach(btn => {
+    btn.addEventListener("click", () => { activeCategory = btn.dataset.cat; renderCatTabs(); renderTasks(); });
+  });
+}
+
+function renderTasks() {
+  const cat = CATEGORIES[activeCategory];
+  const container = document.getElementById("task-list");
+  container.innerHTML = cat.items.map(task => {
+    const done = state.completedToday.some(c => c.id === task.id);
+    return '<button class="task-btn" data-id="' + task.id + '" ' + (done ? "disabled" : "") + ' style="'
+      + "background:" + (done ? cat.color + "18" : "rgba(255,255,255,0.04)") + ";"
+      + "border:1.5px solid " + (done ? cat.color + "44" : "rgba(255,255,255,0.06)") + ";"
+      + "opacity:" + (done ? 0.6 : 1) + ";"
+      + "color:#e8e8f0;"
+      + '">'
+      + '<div class="left">'
+      + '<div class="icon" style="background:' + (done ? cat.color : "rgba(255,255,255,0.08)") + '">'
+      + (done ? "✓" : cat.emoji) + "</div>"
+      + '<span class="name">' + task.label + "</span></div>"
+      + '<span class="mins" style="color:' + cat.color + '">+' + task.minutes + "m</span>"
+      + "</button>";
+  }).join("");
+  container.querySelectorAll(".task-btn:not([disabled])").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const task = cat.items.find(t => t.id === btn.dataset.id);
+      if (!task) return;
+      completeTask(task, activeCategory);
+      btn.style.transform = "scale(1.03)";
+      setTimeout(() => { btn.style.transform = "scale(1)"; }, 300);
+    });
+  });
+}
+
+function completeTask(task, catKey) {
+  state.totalMinutes += task.minutes;
+  state.completedToday.push({
+    ...task, category: catKey,
+    timestamp: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+  });
+  saveState();
+  updateRing();
+  renderTodayTags();
+  renderTasks();
+}
+
+// --- Modals ---
+
+function openRedeem() {
+  const modal = document.getElementById("redeem-modal");
+  modal.classList.remove("hidden");
+  document.getElementById("redeem-balance").textContent = "You have " + fmtMin(state.totalMinutes) + " saved up";
+  const list = document.getElementById("reward-list");
+  list.innerHTML = MILESTONES.map(m => {
+    const can = state.totalMinutes >= m.minutes;
+    return '<button class="reward-btn" ' + (can ? 'data-min="' + m.minutes + '"' : "disabled") + ' style="'
+      + "background:" + (can ? "rgba(39,174,96,0.15)" : "rgba(255,255,255,0.03)") + ";"
+      + "border:1.5px solid " + (can ? "rgba(39,174,96,0.3)" : "rgba(255,255,255,0.06)") + ";"
+      + "color:" + (can ? "#e8e8f0" : "rgba(255,255,255,0.3)") + ";"
+      + '">'
+      + "<span>" + m.emoji + " " + m.label + "</span>"
+      + '<span style="font-size:13px;font-weight:700;color:' + (can ? "#27AE60" : "rgba(255,255,255,0.2)") + '">' + fmtMin(m.minutes) + "</span>"
+      + "</button>";
+  }).join("");
+  list.querySelectorAll(".reward-btn[data-min]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const m = MILESTONES.find(x => x.minutes === parseInt(btn.dataset.min));
+      if (m) redeemReward(m);
+    });
+  });
+}
+
+function closeRedeem() { document.getElementById("redeem-modal").classList.add("hidden"); }
+
+function redeemReward(milestone) {
+  state.totalMinutes -= milestone.minutes;
+  state.history.push({
+    type: "redeem", label: milestone.label, emoji: milestone.emoji,
+    minutes: milestone.minutes, date: todayStr()
+  });
+  saveState();
+  closeRedeem();
+  updateRing();
+}
+
+function toggleLog() {
+  const modal = document.getElementById("log-modal");
+  modal.classList.toggle("hidden");
+  if (!modal.classList.contains("hidden")) renderLog();
+}
+function closeLog() { document.getElementById("log-modal").classList.add("hidden"); }
+
+function renderLog() {
+  const el = document.getElementById("log-content");
+  if (state.completedToday.length === 0 && state.history.length === 0) {
+    el.innerHTML = '<p style="text-align:center;opacity:0.4;font-size:14px">No activity yet — start earning!</p>';
+    return;
+  }
+  let html = "";
+  if (state.completedToday.length > 0) {
+    html += '<h4 class="log-heading">Today</h4>';
+    html += state.completedToday.map(item =>
+      '<div class="log-row"><span>' + CATEGORIES[item.category].emoji + " " + item.label
+      + '</span><span style="color:#27AE60;font-weight:700">+' + item.minutes + "m</span></div>"
+    ).join("");
+  }
+  if (state.history.length > 0) {
+    html += '<h4 class="log-heading redeemed">Redeemed</h4>';
+    html += state.history.map(item =>
+      '<div class="log-row"><span>' + item.emoji + " " + item.label
+      + '</span><span style="color:#E74C3C;font-weight:700">-' + item.minutes + "m</span></div>"
+    ).join("");
+  }
+  el.innerHTML = html;
+}
+
+function resetDay() {
+  if (state.completedToday.length > 0) state.streakDays++;
+  state.completedToday = [];
+  state.lastDate = todayStr();
+  saveState();
+  updateRing();
+  renderTodayTags();
+  renderTasks();
+}
+
+// --- Init ---
+checkNewDay();
+updateRing();
+renderTodayTags();
+renderCatTabs();
+renderTasks();
+</script>
+</body>
+</html>
